@@ -25,7 +25,7 @@ app.use(express.json({ extended: true }));
 /**
  * Routes
  */
-
+app.use('/api/users', require('../routes/users'));
 
 /**
  * PORT 
