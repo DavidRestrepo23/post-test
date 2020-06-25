@@ -1,8 +1,6 @@
 import React from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import { makeStyles } from '@material-ui/core/styles';
-
 import {
     Button,
     CssBaseline,
@@ -12,29 +10,12 @@ import {
     Typography,
     Container
 } from '@material-ui/core';
+import { useStyles } from '../../styles/SignUpStyle';
+import Alert from '@material-ui/lab/Alert';
 
 
-const useStyles = makeStyles((theme) => ({
-    paper: {
-        marginTop: theme.spacing(8),
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-    },
-    avatar: {
-        margin: theme.spacing(1),
-        backgroundColor: theme.palette.secondary.main,
-    },
-    form: {
-        width: '100%',
-        marginTop: theme.spacing(3),
-    },
-    submit: {
-        margin: theme.spacing(3, 0, 2),
-    },
-}));
+const SignUp = (props) => {
 
-const SignUp = () => {
     const classes = useStyles();
 
     return (
@@ -47,7 +28,7 @@ const SignUp = () => {
                 <Typography component="h1" variant="h5">
                     Registro
                 </Typography>
-                <form className={classes.form} noValidate>
+                <form className={classes.form} onSubmit={props.handleSubmitForm}>
                     <Grid container spacing={2}>
                         <Grid item xs={12} sm={12}>
                             <TextField
@@ -59,6 +40,7 @@ const SignUp = () => {
                                 id="name"
                                 label="Tu nombre"
                                 autoFocus
+                                onChange={props.handleChangeForm}
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -70,6 +52,7 @@ const SignUp = () => {
                                 label="Tu correo"
                                 name="email"
                                 autoComplete="email"
+                                onChange={props.handleChangeForm}
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -82,6 +65,7 @@ const SignUp = () => {
                                 type="password"
                                 id="password"
                                 autoComplete="current-password"
+                                onChange={props.handleChangeForm}
                             />
                         </Grid>
                     </Grid>
@@ -94,6 +78,18 @@ const SignUp = () => {
                     >
                         Enviar
                     </Button>
+
+                    {props.alertStatus ? (
+                        <Link href="/sign-in">
+                            <Alert severity="success">
+                                {props.message}
+                                <br />
+                                Inicia sesión para continuar
+                            </Alert>
+                        </Link>
+                    ) : null}
+
+                    <br />
                     <Grid container justify="flex-end">
                         <Grid item>
                             <Link href="/sign-in" variant="body2">

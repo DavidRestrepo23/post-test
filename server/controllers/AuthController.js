@@ -16,11 +16,11 @@ exports.authenticateUser = async (req, res) => {
 
         //validate user
         let user = await User.findOne({ email });
-        if (!user) return res.status(400).json({ msg: 'User does not exist' });
+        if (!user) return res.status(400).json({ msg: 'El correo ingresado no existe.' });
 
         //compared passwords
         const passwCompare = await bcryptjs.compare(password, user.password);
-        if (!passwCompare) return res.status(400).json({ msg: 'Incorrect password' });
+        if (!passwCompare) return res.status(400).json({ msg: 'La contraseña no coincide.' });
 
         //payload sent to jwt
         const payload = {

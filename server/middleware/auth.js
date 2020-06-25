@@ -10,7 +10,7 @@ const jwt = require('jsonwebtoken');
 module.exports = function (req, res, next) {
 
     const token = req.header('Authorization');
-    if (!token) return res.status(401).json({ msg: "Permission denied, security token does not exist" });
+    if (!token) return res.status(401).json({ msg: "El token ha experido, debes iniciar sesión nuevamente." });
 
     try {
 

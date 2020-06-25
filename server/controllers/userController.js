@@ -27,7 +27,10 @@ exports.create = async (req, res) => {
 
         //save user
         await user.save();
-        res.json({ msg: 'User create successful' });
+
+        res.json({
+            msg: 'Tu cuenta ha sido creada con éxito!',
+        });
 
     } catch (error) {
         console.log(error);
@@ -35,3 +38,19 @@ exports.create = async (req, res) => {
     }
 }
 
+/**
+ * Get User Authenticated
+ *
+ * @param req
+ * @param res
+ */
+
+exports.getUserAuthenticated = async (req, res) => {
+    try {
+        const user = await User.findById(req.user.id).select('-password');
+        res.json({ user });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ msg: 'An error has ocurred' });
+    }
+}
