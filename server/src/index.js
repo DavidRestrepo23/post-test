@@ -23,9 +23,16 @@ app.use(cors());
 app.use(express.json({ extended: true }));
 
 /**
+ * Auth Routes
+ */
+app.use('/api/auth', require('../routes/auth'));
+
+/**
  * Routes
  */
 app.use('/api/users', require('../routes/users'));
+app.use('/api/posts', require('../routes/posts'));
+
 
 /**
  * PORT 
