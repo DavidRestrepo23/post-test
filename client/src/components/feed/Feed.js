@@ -1,5 +1,4 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import {
     Card,
     CardHeader,
@@ -13,41 +12,10 @@ import {
     CssBaseline
 } from '@material-ui/core';
 
-import { red } from '@material-ui/core/colors';
 import FaceIcon from '@material-ui/icons/Face';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
-
-const useStyles = makeStyles((theme) => ({
-    root: {
-        maxWidth: 800,
-        marginBottom: '50px'
-    },
-
-    paper: {
-        marginTop: theme.spacing(8),
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-    },
-
-    media: {
-        height: 0,
-        paddingTop: '56.25%', // 16:9
-    },
-    expand: {
-        transform: 'rotate(0deg)',
-        marginLeft: 'auto',
-        transition: theme.transitions.create('transform', {
-            duration: theme.transitions.duration.shortest,
-        }),
-    },
-    expandOpen: {
-        transform: 'rotate(180deg)',
-    },
-    avatar: {
-        backgroundColor: red[500],
-    },
-}));
+import { useStyles } from '../../styles/FeedStyle';
+import ButtonFloating from '../ButtonFloating';
+import MenuSettings from '../Menu';
 
 const Feed = () => {
 
@@ -56,6 +24,9 @@ const Feed = () => {
     return (
         <Container component="main" maxWidth="md" className={classes.paper}>
             <CssBaseline />
+
+            <ButtonFloating />
+
             <div>
                 <Grid container spacing={2}>
                     <Card className={classes.root}>
@@ -66,9 +37,7 @@ const Feed = () => {
                                 </Avatar>
                             }
                             action={
-                                <IconButton aria-label="settings">
-                                    <MoreVertIcon />
-                                </IconButton>
+                                <MenuSettings />
                             }
                             title="Shrimp and Chorizo Paella"
                             subheader="September 14, 2016"
@@ -87,6 +56,7 @@ const Feed = () => {
                     </Card>
                 </Grid>
             </div>
+
         </Container>
     );
 }

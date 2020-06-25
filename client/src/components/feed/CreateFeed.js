@@ -6,28 +6,26 @@ import {
     CssBaseline,
     TextField,
     Link,
+    Input,
     Grid,
     Typography,
     Container
 } from '@material-ui/core';
 import { useStyles } from '../../styles/SignInStyle';
-import Alert from '@material-ui/lab/Alert';
 
-const SignIn = (props) => {
+
+const CreateFeed = () => {
 
     const classes = useStyles();
 
     return (
-        <Container component="main" maxWidth="xs">
+        <Container component="main" maxWidth="md">
             <CssBaseline />
             <div className={classes.paper}>
-                <Avatar className={classes.avatar}>
-                    <LockOutlinedIcon />
-                </Avatar>
                 <Typography component="h1" variant="h5">
-                    Iniciar sesión
+                    Crear Post
                 </Typography>
-                <form className={classes.form} onSubmit={props.handleSubmitForm}>
+                <form className={classes.form}>
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
                             <TextField
@@ -35,10 +33,9 @@ const SignIn = (props) => {
                                 required
                                 fullWidth
                                 id="email"
-                                label="Correo"
+                                label="Titulo"
+                                type="text"
                                 name="email"
-                                autoComplete="email"
-                                onChange={props.handleChangeForm}
                             />
                         </Grid>
                         <Grid item xs={12}>
@@ -46,12 +43,23 @@ const SignIn = (props) => {
                                 variant="outlined"
                                 required
                                 fullWidth
-                                name="password"
-                                label="Contraseña"
-                                type="password"
-                                id="password"
-                                autoComplete="current-password"
-                                onChange={props.handleChangeForm}
+                                name="content"
+                                label="Contenido"
+                                type="text"
+                                multiline
+                                rows={4}
+                                id="content"
+                            />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <Input
+                                variant="outlined"
+                                required
+                                fullWidth
+                                id="email"
+                                label="Titulo"
+                                name="email"
+                                type="file"
                             />
                         </Grid>
                     </Grid>
@@ -62,21 +70,8 @@ const SignIn = (props) => {
                         color="primary"
                         className={classes.submit}
                     >
-                        Ingresar
+                        Crear Post
                     </Button>
-
-                    {props.alertStatus ? (
-                        <Alert severity="error">
-                            {props.message}
-                        </Alert>) : null}
-                    <br />
-                    <Grid container justify="flex-end">
-                        <Grid item>
-                            <Link href="/sign-up" variant="body2">
-                                ¿Aún no te has registrado?
-                            </Link>
-                        </Grid>
-                    </Grid>
                 </form>
             </div>
 
@@ -84,4 +79,4 @@ const SignIn = (props) => {
     );
 }
 
-export default SignIn;
+export default CreateFeed;
