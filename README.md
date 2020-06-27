@@ -2,6 +2,11 @@
 
 Prueba
 
+# Login
+
+Email: ```drv404@hotmail.com```
+password: ```admin1234```
+
 ## Tech Stack
 - Node/Express
 - Mongoose 
