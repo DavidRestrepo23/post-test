@@ -5,15 +5,15 @@ import { getUserAuth } from '../../redux/actions/auth/actions';
 
 const PrivateRoute = ({ component: Component, ...props }) => {
 
-    const { auth } = props.AuthReducer;
+    const { auth, loading } = props.AuthReducer;
 
     useEffect(() => {
         props.getUserAuth();
     }, []);
 
     return (
-        <Route {...props} render={props => !auth ?
-            <Redirect to="/sign-in" /> : <Component {...props} />}
+        <Route {...props} render={props => !auth && !loading ?
+            (<Redirect to="/sign-in" />) : (<Component {...props} />)}
         />
     );
 }

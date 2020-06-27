@@ -28,9 +28,9 @@ const FeedContainer = (props) => {
 }
 
 const mapStateToProps = state => {
-
     return {
-        posts: state.PostReducer.posts
+        posts: state.PostReducer.posts,
+        auth: state.AuthReducer
     }
 }
 
