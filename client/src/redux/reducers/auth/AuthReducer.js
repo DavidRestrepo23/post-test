@@ -24,6 +24,7 @@ function AuthReducer(state = initialState, action) {
                 user: action.payload.user,
                 auth: true,
             }
+        case "LOGOUT":
         case "AUTH_STATUS_ERROR":
         case "LOGIN_ERROR":
             localStorage.removeItem('token');

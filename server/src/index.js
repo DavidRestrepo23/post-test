@@ -1,11 +1,18 @@
 const express = require('express');
 const connectDB = require('../config/db');
+const bodyParser = require('body-parser');
+const fileUpload = require('express-fileupload');
 const cors = require('cors');
 
 /**
  * Create server
  */
 const app = express();
+
+/**
+ * Static folfer
+ */
+app.use('/src/images', express.static('src/images'));
 
 /**
  * Connect to databse
@@ -20,6 +27,8 @@ app.use(cors());
 /**
  * Express enables
  */
+app.use(fileUpload());
+app.use(bodyParser.json());
 app.use(express.json({ extended: true }));
 
 /**

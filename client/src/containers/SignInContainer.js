@@ -11,12 +11,12 @@ const SignInContainer = (props) => {
     });
 
     useEffect(() => {
-
         props.getUserAuth();
 
         if (props.auth) {
             props.history.push('/');
         }
+
     }, [props.auth, props.history]);
 
 

@@ -20,7 +20,7 @@ const ButtonFloating = () => {
 
     return (
         <div className={classes.root}>
-            <Link to="/create-feed">
+            <Link to="/feed">
                 <Fab color="primary" aria-label="add">
                     <AddIcon />
                 </Fab>

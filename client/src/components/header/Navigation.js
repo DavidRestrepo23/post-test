@@ -1,25 +1,9 @@
 import React from 'react';
-import { AppBar, Toolbar, Typography } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { AppBar, Toolbar, Typography, Link } from '@material-ui/core';
+import CloseSession from './CloseSession';
+import { useStyles } from '../../styles/NavigationStyle';
 
-const useStyles = makeStyles((theme) => ({
-    root: {
-        flexGrow: 1,
-    },
-    menuButton: {
-        marginRight: theme.spacing(2),
-    },
-    title: {
-        flexGrow: 1,
-    },
-    link: {
-        color: '#fff',
-        textDecoration: 'none',
-        fontSize: '18px'
-    }
-}));
-
-const Navigation = () => {
+const Navigation = (props) => {
 
     const classes = useStyles();
 
@@ -28,8 +12,19 @@ const Navigation = () => {
             <AppBar position="static">
                 <Toolbar>
                     <Typography variant="h6" className={classes.title}>
-                        Post Julius
+                        <Link href="/" className={classes.brand}>
+                            Julius Post's
+                        </Link>
                     </Typography>
+                    <div>
+                        <CloseSession
+                            anchorEl={props.anchorEl}
+                            handleClick={props.handleClick}
+                            handleClose={props.handleClose}
+                            handleLogout={props.handleLogout}
+                            name={props.name}
+                        />
+                    </div>
                 </Toolbar>
             </AppBar>
         </div>
