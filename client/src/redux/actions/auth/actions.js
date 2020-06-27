@@ -4,7 +4,8 @@ import {
     LOGIN_SUCCESS,
     LOGIN_ERROR,
     AUTH_STATUS,
-    AUTH_STATUS_ERROR
+    AUTH_STATUS_ERROR,
+    LOGOUT
 } from './actionTypes';
 import clientAxios from '../../../config/axios';
 import AuthToken from '../../../config/token';
@@ -77,5 +78,14 @@ export function getUserAuth() {
                 payload: error.response.data.msg
             });
         });
+    }
+}
+
+/**
+ * Logout
+ */
+export const logout = () => {
+    return {
+        type: LOGOUT
     }
 }

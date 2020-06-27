@@ -5,13 +5,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { Link } from 'react-router-dom';
 
-const options = [
-    'Editar',
-    'Eliminar',
-];
-
 const ITEM_HEIGHT = 48;
-const MenuSettings = () => {
+const MenuSettings = (props) => {
 
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
@@ -39,6 +34,7 @@ const MenuSettings = () => {
                 anchorEl={anchorEl}
                 keepMounted
                 open={open}
+
                 onClose={handleClose}
                 PaperProps={{
                     style: {
@@ -47,15 +43,14 @@ const MenuSettings = () => {
                     },
                 }}
             >
-                {options.map((option) => (
-                    <MenuItem key={option} selected={option === 'Editar'} onClick={handleClose}>
-                        {option === 'Editar' ?
-                            <Link to="create-feed">
-                                {option}
-                            </Link> : option}
-
-                    </MenuItem>
-                ))}
+                <MenuItem onClick={(e) => props.handleCurrentPost(props.post_id)}>
+                    <Link to="/feed">
+                        Editar
+                    </Link>
+                </MenuItem>
+                <MenuItem onClick={(e) => props.handleClickDelete(props.post_id)}>
+                    Eliminar
+                </MenuItem>
             </Menu>
         </div>
     );

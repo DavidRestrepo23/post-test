@@ -1,23 +1,12 @@
 import React from 'react';
-import {
-    Card,
-    CardHeader,
-    CardMedia,
-    CardContent,
-    Avatar,
-    IconButton,
-    Typography,
-    Container,
-    Grid,
-    CssBaseline
-} from '@material-ui/core';
-
-import FaceIcon from '@material-ui/icons/Face';
-import { useStyles } from '../../styles/FeedStyle';
+import { Container, Grid, CssBaseline, Typography } from '@material-ui/core';
 import ButtonFloating from '../ButtonFloating';
-import MenuSettings from '../Menu';
 
-const Feed = () => {
+import { useStyles } from '../../styles/FeedStyle';
+import FeedCard from './FeedCard';
+
+
+const Feed = (props) => {
 
     const classes = useStyles();
 
@@ -29,31 +18,16 @@ const Feed = () => {
 
             <div>
                 <Grid container spacing={2}>
-                    <Card className={classes.root}>
-                        <CardHeader
-                            avatar={
-                                <Avatar aria-label="recipe" className={classes.avatar}>
-                                    <FaceIcon />
-                                </Avatar>
-                            }
-                            action={
-                                <MenuSettings />
-                            }
-                            title="Shrimp and Chorizo Paella"
-                            subheader="September 14, 2016"
+                    {props.posts ? (props.posts.map((item, index) => (
+                        <FeedCard
+                            key={index}
+                            post={item}
+                            handleClickDelete={props.handleClickDelete}
+                            handleCurrentPost={props.handleCurrentPost}
                         />
-                        <CardMedia
-                            className={classes.media}
-                            image="/static/images/cards/paella.jpg"
-                            title="Paella dish"
-                        />
-                        <CardContent>
-                            <Typography variant="body2" color="textSecondary" component="p">
-                                This impressive paella is a perfect party dish and a fun meal to cook together with your
-                                guests. Add 1 cup of frozen peas along with the mussels, if you like.
-                            </Typography>
-                        </CardContent>
-                    </Card>
+                    ))) :
+                        null
+                    }
                 </Grid>
             </div>
 
