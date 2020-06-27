@@ -7,6 +7,7 @@ const initialState = {
     auth: null,
     message: null,
     statusMessage: null,
+    loading: true,
 };
 
 function AuthReducer(state = initialState, action) {
@@ -15,7 +16,8 @@ function AuthReducer(state = initialState, action) {
             return {
                 ...state,
                 message: action.payload.msg,
-                statusMessage: true
+                statusMessage: true,
+                loading: false
             }
         case "LOGIN_SUCCESS":
             localStorage.setItem('token', action.payload.user.token);
@@ -23,6 +25,7 @@ function AuthReducer(state = initialState, action) {
                 ...state,
                 user: action.payload.user,
                 auth: true,
+                loading: false
             }
         case "LOGOUT":
         case "AUTH_STATUS_ERROR":
@@ -30,16 +33,21 @@ function AuthReducer(state = initialState, action) {
             localStorage.removeItem('token');
             return {
                 ...state,
-                user: false,
+                user: {
+                    name: null,
+                    email: null,
+                },
                 auth: false,
                 message: action.payload,
-                statusMessage: true
+                statusMessage: false,
+                loading: false
             }
         case "AUTH_STATUS":
             return {
                 ...state,
                 auth: true,
-                user: action.payload
+                user: action.payload,
+                loading: false
             }
         default:
             return state
